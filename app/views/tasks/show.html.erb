@@ -1,0 +1,42 @@
+<% provide(:title, @user.name) %>
+<div class="container">
+  <h1>タスク詳細</h1>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <table class="table table-bordered" id="table-task">
+      <%= render partial: 'shared/error_messages', locals: { obj: @task } %>
+        <tbody>
+          
+          <tr><!-- Railsのモデル名.human_attribute_name(:カラム名)ってなんだ？
+                ActiveRecord::Base のクラスメソッドであり、内部的に I18n モジュールを利用してくれるシロモノらしいです！
+                つまり config/locales/ja.yml に定義してある翻訳内容を良しなに解釈してくれるメソッドってなわけ。-->
+             <th class="active col-md-2"><%= Task.human_attribute_name :id %></th>
+            <td class="col-md-10"><%= @task.id %></td>
+          </tr>
+          <tr>
+            <th class="active col-md-2"><%= Task.human_attribute_name :name %></th>
+            <td class="col-md-10"><%= @task.name %></td>
+          </tr>
+          <tr>
+            <th class="active col-md-2"><%= Task.human_attribute_name :description %></th>
+            <td class="col-md-10"><%= raw Rinku.auto_link(@task.description, :all, 'target="_blank"') %></td>
+          </tr>
+          <tr>
+            <th class="active col-md-2"><%= Task.human_attribute_name :created_at %></th>
+            <td class="col-md-10"><%= l(@task.created_at, format: :long) %></td>
+          </tr>
+          <tr>
+            <th class="active col-md-2"><%= Task.human_attribute_name :updated_at %></th>
+            <td class="col-md-10"><%= l(@task.updated_at, format: :long) %></td>
+          </tr>
+        </tbody>
+      </table>
+      <div>
+        <%= link_to "編集", edit_user_task_path(@user, @task), class:"btn btn-lg btn-success" %>
+        <%= link_to "削除", user_task_path(@user,@task), method: :delete,
+                      data: { confirm: "削除してよろしいですか？" },
+                      class:"btn btn-lg btn-danger" %>
+      </div>
+    </div>
+  </div>
+</div>

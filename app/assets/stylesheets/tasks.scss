@@ -1,0 +1,68 @@
+// Place all the styles related to the tasks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.container {
+    padding-right: 15px;
+    padding-left: 7px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+h1 {
+    font-size: 42px;
+    letter-spacing: -2px; /* 文字間隔の設定　-を付ける事により文字間隔を狭める */
+    margin-top: 20px;
+    margin-bottom: 30px;
+    margin-left: -5px;
+}
+
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.right{
+  float: right;
+}
+
+th{
+    font-weight: bold;
+}
+#table-task {
+  table-layout: fixed; width: 100%;
+  th {
+    vertical-align: middle;
+    white-space: nowrap;
+    text-align: center;
+  }
+  td {
+    word-wrap: break-word;
+  }
+}
+
+#task-name {
+  font-size: 1.8rem;/* emと同じような考え方だが、ルート(html)に対する割合のサイズ相対値（relative) */
+                    
+
+}
+#table-tasks {
+  th {
+    vertical-align: middle;
+  }
+  td {
+    vertical-align: middle;
+  }
+}
+
+.btn-form {
+    margin-top: 10px;
+}
+
+.label-task {
+    margin-top: 5px;
+}
+
+.all{
+  margin-right: -5px;
+  padding-left: -3px;
+}

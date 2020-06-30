@@ -1,3 +1,44 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+#top-main {
+    background-color: rgba(255,255,255,0);
+    
+}
+
+.container .jumbotron, .container-fluid .jumbotron {
+    padding-right: 15px;
+    padding-left: 15px;
+    border-radius: 6px;
+}
+
+
+#top-main-title {
+    font-style: italic;
+    font-weight: bold;
+}
+.row {
+    margin-right: -15px;
+    margin-left: -35px;
+}
+
+.font{
+    font-size: 42px;
+    margin: 20px 0px 30px;
+    text-align: center;
+}
+.margin{
+    margin-left: -20px;
+}
+
+.margin1{
+    margin-left: -7px;
+}

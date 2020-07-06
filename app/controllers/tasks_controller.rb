@@ -1,5 +1,13 @@
 class TasksController < ApplicationController
   before_action :set_user
+  before_action :logged_in_user # ←と↓はapplication_controllerに記載
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user # sessions_helper参照このメソッドにより、他のユーザーのタスク操作を禁止できる
+  
+  
+  
+  
+  
   
   # indexであるユーザーの投稿一覧を検索するのは2段構え↓
   # 1.userを特定する→set_user→ユーザを特定する
@@ -33,6 +41,16 @@ class TasksController < ApplicationController
     end
   end
   
+  def update
+    @task = @user.tasks.find_by(id: params[:id])
+    if @task.update_attributes(task_params)
+      flash[:success] = "タスクを更新しました"
+      redirect_to user_task_url(@user)
+    else
+      render :edit
+    end
+  end
+  
   def edit
     @task = @user.tasks.find_by(id: params[:id])
   end
@@ -47,5 +65,25 @@ class TasksController < ApplicationController
   
   def task_params
     params.require(:task).permit(:name, :description)
+  end
+  
+  
+    
+  
+  # 管理者権限、または現在ログインしていいるユーザーを許可します。
+  def admin_or_correct_user
+    @user = User.find(params[:user_id]) if @user.blank?
+    unless current_user?(@user) || @current_user.admin?
+     flash[:danger] = "編集権限がありません。"
+     redirect_to(root_url)
+    end  
+  end
+  
+  # 他のユーザーのタスク編集ページに飛べないようにする(show,updateも規制)
+  def set_task
+    unless @task = @user.tasks.find_by(id: params[:id])
+      flash[:danger] = "権限がありません。"
+      redirect_to user_tasks_url (current_user)
+    end
   end
 end

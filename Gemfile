@@ -5,6 +5,8 @@ gem 'rails-i18n' # 今回はこのgemを追加しています
 gem 'bcrypt'
 gem 'faker'
 gem 'bootstrap-sass'
+gem 'will_paginate' # この行を追加してください。
+gem 'bootstrap-will_paginate' # この行を追加してください。
 gem 'puma',         '~> 3.7'
 gem 'sass-rails',   '~> 5.0'
 gem 'uglifier',     '>= 1.3.0'

@@ -1,23 +1,29 @@
 <% provide(:title, @user.name) %>
-
+<h1>プロフィール</h1>
 <div class="row">
-  <div class="col-md-10 col-md-offset-1">
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th><%= User.human_attribute_name :name %></th>
-          <th><%= User.human_attribute_name :email %></th>
-          <th><%= User.human_attribute_name :created_at %></th>
-        </tr>
-      </thead>
-
+  <div class="col-md-6 col-md-offset-3">
+    <table class="table table-hover table-bordered" id="table-user">
       <tbody>
-        <tr>
-          <td><%= @user.name %></td>
-          <td><%= @user.email %></td>
-          <td><%= @user.created_at %></td>
-        </tr>
-      </tbody>
-    </table>
+          
+          <tr><!-- Railsのモデル名.human_attribute_name(:カラム名)ってなんだ？
+                ActiveRecord::Base のクラスメソッドであり、内部的に I18n モジュールを利用してくれるシロモノらしいです！
+                つまり config/locales/ja.yml に定義してある翻訳内容を良しなに解釈してくれるメソッドってなわけ。-->
+             <th class="active col-md-3"><%= User.human_attribute_name :id %></th>
+            <td class="col-md-9"><%= @user.id %></td>
+          </tr>
+          <tr>
+            <th class="active col-md-3"><%= User.human_attribute_name :name %></th>
+            <td class="col-md-9"><%= @user.name %></td>
+          </tr>
+          <tr>
+            <th class="active col-md-3"><%= User.human_attribute_name :email %></th>
+            <td class="col-md-9"><%= @user.email %></td>
+          </tr>
+          <tr>
+            <th class="active col-md-3"><%= User.human_attribute_name :created_at %></th>
+            <td class="col-md-9"><%= l(@user.created_at, format: :long) %></td>
+          </tr>
+        </tbody>
+      </table>
   </div>    
 </div>
